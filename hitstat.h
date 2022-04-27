@@ -1,5 +1,12 @@
 #include "print.h"
-//low overhead hitstat debugging tool v1.0
+/* syntax:
+hit(counter_num, condition) add a hit
+count if condition is met,total++
+mean(counter_num2,value) add value to
+counter sum,record total++ value count
+printhits() and printmeans() will
+print all used counters for hits/means
+*/
 //https://github.com/FrozenVoid/hitstat/
 #define MAX_HITCOUNT 256
 static uint64_t __attribute__((unused)) hitmap[MAX_HITCOUNT][2]={0};
