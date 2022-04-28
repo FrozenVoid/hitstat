@@ -25,6 +25,6 @@ static size_t condcount=0;\
 ;hitcount++;condcount+=!!(cond);\
 size_t curtime= __rdtsc();\
 if(curtime-elapsed>HIT_COUNT_INTERVAL){elapsed=curtime;\
-double perc=100.0*condcount/hitcount;\
+long double perc=100.0*condcount/hitcount;\
 fprint(stderr,__FILE__,":",__LINE__,":(",stringify(cond),") Total:",hitcount,"Hits:",condcount,"Hit%:",perc,"\n");};0;})
 
