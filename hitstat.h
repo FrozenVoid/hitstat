@@ -49,7 +49,7 @@ double: DBL_MIN,\
  long double: LDBL_MIN ,\
 default: 0 )
 
-#define mean1(value) ({;\
+#define mean1(valuex) ({;typeof(valuex)  value=valuex;\
 static uint64_t mean_elapsed=0;\
 static size_t meancount=0;\
 static long double meansum=0;\
@@ -63,7 +63,7 @@ if(curtime-mean_elapsed>HIT_COUNT_INTERVAL){mean_elapsed=curtime;\
 long double avg=meansum/meancount;\
 fprint(stderr,__FILE__,":",__LINE__,":[",stringify(value),"] ",meancount,"counts\n Min:",valmin,"Avg:",avg,"Max:",valmax,"\n");};value;})
 
-#define hit1(cond) ({;\
+#define hit1(condx) ({;int cond=condx;\
 static uint64_t hit_elapsed=0;\
 static size_t hitcount=0;\
 static size_t condcount=0;\
