@@ -7,7 +7,7 @@ mean(value) record average of value
 */
 //https://github.com/FrozenVoid/hitstat/
 
-#define HIT_COUNT_INTERVAL 4000000000ULL
+#define HIT_COUNT_INTERVAL 1000000000ULL
 #define mean(value) ({;\
 static uint64_t elapsed=0;\
 static size_t meancount=0;\
