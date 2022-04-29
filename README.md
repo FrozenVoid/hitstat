@@ -1,5 +1,5 @@
 # hitstat
-
+```
 zero-overhead hitcounter/meancounters
 hit(conditions...) record percent of condition==true for each condition
 mean(values...) record min/average/max of values
@@ -13,3 +13,4 @@ and bigfunc(a) measured cost in CPU cycles
 collection:
 hit(a>b,b<c,d>b); will record true% of conditions in sequence
 mean(a,b,c); will record min/max/avg of a,b,c
+```
