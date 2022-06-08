@@ -403,3 +403,5 @@ fprint(stderr,__FILE__,":",__LINE__,":{",stringify(funcx),"} ",total_calls,"call
 #define mean(args...) chainapplyhs_(mean1,args)
 
 #define cost(args...) chainapplyhs_(cost1,args)
+#define costvoid(arg) cost1((arg,1))
+
