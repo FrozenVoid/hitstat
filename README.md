@@ -4,6 +4,8 @@ zero-overhead hitcounter/meancounters
 hit(conditions...) record percent of condition==true for each condition
 mean(values...) record min/average/max of values
 cost(func(x)) record cost of function calls
+costvoid(func(x)) record cost of function and 
+discard result(e.g. for void functions)
 examples:
 insertion: if(a>mean(d) && hit(a>b)){cost( bigfunc(a));}
 will result in `if(a>d && (a>b)){bigfunc(a);}
