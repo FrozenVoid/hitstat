@@ -254,8 +254,8 @@ fprintf(file,delim),fprintf(file,format_type(arg),arg)
 #define dbgprint(args...) fprint(stderr,args)
 #define dbghexprint(args...) hexfprint(stderr,args)
 
-#define HIT_COUNT_INTERVAL  1000000000ULL
-#define MEAN_COUNT_INTERVAL 4000000000ULL
+#define HIT_COUNT_INTERVAL  8000000000ULL
+#define MEAN_COUNT_INTERVAL 8000000000ULL
 #define COST_COUNT_INTERVAL 19000000000ULL
 
 #define meantypemax(value) _Generic((value),\
@@ -301,7 +301,7 @@ valmax=value>valmax?value:valmax;\
 size_t curtime= __rdtsc();\
 if(curtime-mean_elapsed>MEAN_COUNT_INTERVAL){mean_elapsed=curtime;\
 long double avg=meansum/meancount;\
-fprint(stderr,__FILE__,":",__LINE__,":[",stringify(valuex),"] ",meancount,"counts\n Min:",valmin,"Avg:",avg,"Max:",valmax,"\n");};value;})
+fprint(stderrv,__FILE__,":",__LINE__,":[",stringify(valuex),"] ",meancount,"counts\n Min:",valmin,"Avg:",avg,"Max:",valmax,"\n");};value;})
 
 #define hit1(condx) ({;__auto_type  cond=condx;\
 static uint64_t hit_elapsed=0;\
@@ -311,7 +311,7 @@ static size_t condcount=0;\
 size_t curtime= __rdtsc();\
 if(curtime-hit_elapsed>HIT_COUNT_INTERVAL){hit_elapsed=curtime;\
 long double perc=100.0L*condcount/hitcount;\
-fprint(stderr,__FILE__,":",__LINE__,":(",stringify(condx),") ",hitcount,"counts\n Hits:",condcount,"Hit%:",perc,"\n");};cond;})
+fprint(stderr,"\n",__FILE__,":",__LINE__,":(",stringify(condx),") ",hitcount,"counts\n Hits:",condcount,"Hit%:",perc,"\n");};cond;})
 
 #define cost1(funcx) ({;\
 static uint64_t cost_elapsed=0;\
@@ -328,7 +328,7 @@ valmax=cyclediff>valmax?cyclediff:valmax;\
 total_cycles+=cyclediff;\
 if(curtime-cost_elapsed>COST_COUNT_INTERVAL){cost_elapsed=curtime;\
 long double avg=1.0L*total_cycles/total_calls;\
-fprint(stderr,__FILE__,":",__LINE__,":{",stringify(funcx),"} ",total_calls,"calls\n Avg:",avg," cycles Min<>Max:",valmin,"<>",valmax,"cycles\n");};funcres;})
+fprint(stderr,"\n",__FILE__,":",__LINE__,":{",stringify(funcx),"} ",total_calls,"calls\n Avg:",avg," cycles Min<>Max:",valmin,"<>",valmax,"cycles\n");};funcres;})
 
 
 #define chainapplyhs_(func,arg...) merge(chainapplyhs_,argcount(arg))(func,arg)
