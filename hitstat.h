@@ -301,7 +301,7 @@ valmax=value>valmax?value:valmax;\
 size_t curtime= __rdtsc();\
 if(curtime-mean_elapsed>MEAN_COUNT_INTERVAL){mean_elapsed=curtime;\
 long double avg=meansum/meancount;\
-fprint(stderrv,__FILE__,":",__LINE__,":[",stringify(valuex),"] ",meancount,"counts\n Min:",valmin,"Avg:",avg,"Max:",valmax,"\n");};value;})
+fprint(stderr,"\n",__FILE__,":",__LINE__,":[",stringify(valuex),"] ",meancount,"counts\n Min:",valmin,"Avg:",avg,"Max:",valmax,"\n");};value;})
 
 #define hit1(condx) ({;__auto_type  cond=condx;\
 static uint64_t hit_elapsed=0;\
